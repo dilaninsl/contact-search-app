@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <a class="navbar-brand" href="#" routerLink="/home">Contact List App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="/contactlist" routerLinkActive="active">Contacts</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputAddress">First Name</label>
+        <input type="text" [(ngModel)]="sFirstName" [ngModelOptions]="{standalone: true}" class="form-control"
+          id="firstName" placeholder="First Name">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputAddress">Last Name</label>
+        <input type="text" [(ngModel)]="sLastName" [ngModelOptions]="{standalone: true}" class="form-control"
+          id="lastName" placeholder="Last Name">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="padding-bottom: 15px;">
+        <label for="inputAddress">Organisation</label>
+        <input type="text" [(ngModel)]="sOrganisation" [ngModelOptions]="{standalone: true}" class="form-control"
+          id="organisation" placeholder="Organisation">
+      </div>
+      <div class="form-group col-md-6 d-flex align-items-end justify-content-end">
+        <button type="button" class="btn btn-primary float-right" (click)="searchContacts()">Search</button>
+      </div>
+    </div>
+
+  </form>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Organisation</th>
+        <th scope="col">Date Created</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of contactSearchResults">
+        <th scope="row">{{result.fullName}}</th>
+        <td>{{result.organisationNameWithABN}}</td>
+        <td>{{result.dateCreated}}</td>
+        <td><button type="button" class="btn btn-primary float-right" (click)="viewContact(result.id)">View</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
